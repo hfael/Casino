@@ -12,8 +12,6 @@ public class Roulette {
 	static double mise =	5;
 	static int iteration = 410;
 
-	
-	static int totalIteration = iteration;
 	static double baseWallet = wallet;
 	
 	static Set<Integer> rougeValue = new HashSet<>(Set.of(1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36));
@@ -69,11 +67,10 @@ public class Roulette {
 				System.exit(1);
 		}
 	}
-		totalIteration += iteration;
 		log("Mise Max: " + miseMax + " | Itération: " + miseMaxIteration);
 		log("Somme Max: " + sommeMax);
 		log("Bénéfice: " + (sommeMax - baseWallet));
 		wallet = sommeMax;
-		//start(); Faire une fonction récursive pour relancer le programme automatiquement.
+		//start();
 	}
 }
