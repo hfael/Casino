@@ -74,6 +74,6 @@ public class Roulette {
 		log("Somme Max: " + sommeMax);
 		log("Bénéfice: " + (sommeMax - baseWallet));
 		wallet = sommeMax;
-		start();
+		//start(); Faire une fonction récursive pour relancer le programme automatiquement.
 	}
 }
