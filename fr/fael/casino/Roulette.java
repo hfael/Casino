@@ -1,18 +1,19 @@
-package fr.fael.casino;
+package fr.fael.java;
 
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Random;
 
-public class Roulette {
+public class Principale {
 	
 	// Pour statistique, Chance de perte & de gains avec la stratégie Martingale à la roulette.
 	
-	static double wallet = 15000;
-	static double mise =	5;
-	static int iteration = 410;
+	static double wallet = 128;
+	static double mise =	1;
+	static int iteration = 100;
 
 	static double baseWallet = wallet;
+	static int base_iteration = iteration;
 	
 	static Set<Integer> rougeValue = new HashSet<>(Set.of(1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36));
 
@@ -41,7 +42,7 @@ public class Roulette {
 		double miseMax = mise;
 		double sommeMax = wallet;
 		int  miseMaxIteration = 0;
-		for(int value = 0; iteration >= value; value++) {
+		for(int value = 0; base_iteration >= value; value++) {
 			if(wallet >= 0 && actualMise <= wallet) {
 				wallet -= actualMise;
 				Random random = new Random();
@@ -61,16 +62,26 @@ public class Roulette {
 					}
 				}
 			}else {
+				log("-----------------------");
 				log("Vous n'avez plus d'argent !");
+				log(" ");
 				log("Perdu itération " + value);
+				log(" ");
+				log("Somme maximum: " + sommeMax + "€ (+" + (sommeMax-baseWallet)+"€)");
+				log("-----------------------");
 				value = iteration + 1;
 				System.exit(1);
 		}
 	}
-		log("Mise Max: " + miseMax + " | Itération: " + miseMaxIteration);
-		log("Somme Max: " + sommeMax);
-		log("Bénéfice: " + (sommeMax - baseWallet));
+		log("-----------------------");
+		log("Mise Max: " + miseMax + "€ | Itération: " + miseMaxIteration);
+		log(" ");
+		log("Somme Max: " + sommeMax + "€");
+		log(" ");
+		log("Bénéfice: " + (sommeMax - baseWallet) + "€");
+		log("-----------------------");
 		wallet = sommeMax;
+		iteration += base_iteration;
 		//start();
 	}
 }
