@@ -29,7 +29,7 @@ public class Functions {
 	}
 	
 	public static double getTime(int games) {
-		double time = (games * 140) / 3600;
+		int time = (games * 140) / 3600;
 		return time;
 	}
 	
