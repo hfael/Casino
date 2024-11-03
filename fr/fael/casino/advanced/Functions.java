@@ -20,6 +20,19 @@ public class Functions {
 		return number;
 	}
 	
+	public static int roulette() {
+		int a = getRandomInt(36);
+		if(getColor(a).equalsIgnoreCase("Noir")) {
+			return 1;
+		}
+		return 0;
+	}
+	
+	public static double getTime(int games) {
+		double time = (games * 140) / 3600;
+		return time;
+	}
+	
 	public static void log(String string) {
 		System.out.println(string);
 	}
