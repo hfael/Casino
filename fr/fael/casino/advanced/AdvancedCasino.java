@@ -9,7 +9,7 @@ public class AdvancedCasino {
         double wallet_max = wallet;
         double actual_mise = mise;
         for(int i = 0; i != 100; i++) {
-	        while (wallet > actual_mise) {
+	        while (wallet >= actual_mise) {
 	            int roulette = Functions.roulette();
 	            iteration++;
 	            wallet -= actual_mise;
