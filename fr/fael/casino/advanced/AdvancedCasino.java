@@ -1,15 +1,15 @@
-package fr.fael.casino;
+package fr.fael.casino.advanced;
 
 public class AdvancedCasino {
 
-    public static void martingale(double wallet, double mise) {
+    public static void martingale(double wallet, double mise, double walletMax) {
         int iteration = 0;
         int win = 0;
         int loose = 0;
         double wallet_max = wallet;
         double actual_mise = mise;
         for(int i = 0; i != 100; i++) {
-	        while (wallet >= actual_mise) {
+	        while (wallet < walletMax) {
 	            int roulette = Functions.roulette();
 	            iteration++;
 	            wallet -= actual_mise;
@@ -35,8 +35,12 @@ public class AdvancedCasino {
         Functions.log(" ");
         Functions.log(iteration + "T | " + win + "W | " + loose + "L. | "+ winRate + "%.");
         Functions.log("Wallet maximum atteint : " + wallet_max + "€");
+        double base_wallet = AdvancedMain.wallet;
+        double benefice = wallet_max - base_wallet;
+        Functions.log("Bénéfice: " + benefice + "€");
         Functions.log("Temps: " + Functions.getTime(iteration) + "h");
         Functions.log(" ");
         Functions.log("-----------------------------------");
+        //return winRate;
     }
 }
