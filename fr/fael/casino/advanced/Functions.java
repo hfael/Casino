@@ -1,4 +1,4 @@
-package fr.fael.casino;
+package fr.fael.casino.advanced;
 
 import java.util.HashSet;
 import java.util.Random;
