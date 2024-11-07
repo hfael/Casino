@@ -6,7 +6,7 @@ import fr.fael.casino.nodes.Nodes2;
 public class Main {
     
     public static double wallet = 128;
-    public static double mise = 1;
+    public static double mise = 0.1;
     public static double benefice = 1000; // en %
     
     public static double final_benefice = ((wallet * benefice) / 100) + wallet;
@@ -22,7 +22,7 @@ public class Main {
 
         while (stableIterations < stabilityThreshold) {
             iterations++;
-            totalMise += Nodes2.N2(winrate);
+            totalMise += Nodes2.N2(winrate, mise);
             
             double currentAverage = totalMise / iterations;
             
