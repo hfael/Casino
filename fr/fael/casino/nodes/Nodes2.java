@@ -8,11 +8,11 @@ public class Nodes2 {
     static double wallet = Main.wallet;
     static double benefice = Main.final_benefice;
     
-    public static double N2(double winrate, double initialMise) { // Ajout d'un paramètre pour la mise initiale
+    public static double N2(double winrate, double initialMise) {
         double bestMise = 0;
         double highestSuccessRate = 0;
         
-        for (double mise = initialMise; mise <= 200; mise += 10) { // Utilisation de la mise de départ
+        for (double mise = initialMise; mise <= 200; mise += 10) {
             int successfulRuns = 0;
             
             for (int j = 0; j < 100; j++) {
