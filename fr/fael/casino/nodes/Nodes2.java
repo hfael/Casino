@@ -8,25 +8,25 @@ public class Nodes2 {
     static double wallet = Main.wallet;
     static double benefice = Main.final_benefice;
     
-    public static double N2(double winrate) {
+    public static double N2(double winrate, double initialMise) { // Ajout d'un paramètre pour la mise initiale
         double bestMise = 0;
         double highestSuccessRate = 0;
         
-        for (double initialMise = 10; initialMise <= 200; initialMise += 10) {
+        for (double mise = initialMise; mise <= 200; mise += 10) { // Utilisation de la mise de départ
             int successfulRuns = 0;
             
             for (int j = 0; j < 100; j++) {
-                double mise = initialMise;
+                double currentMise = mise;
                 double tempWallet = wallet;
                 
-                while (tempWallet > mise && tempWallet < benefice) {
-                    int result = Martingale.martingale(tempWallet, mise, benefice);
+                while (tempWallet > currentMise && tempWallet < benefice) {
+                    int result = Martingale.martingale(tempWallet, currentMise, benefice);
                     if (result == 1) {
                         successfulRuns++;
                         break;
                     } else {
-                        mise *= 2;
-                        if (mise > tempWallet) break;
+                        currentMise *= 2;
+                        if (currentMise > tempWallet) break;
                     }
                 }
             }
@@ -35,21 +35,20 @@ public class Nodes2 {
             
             if (currentSuccessRate > highestSuccessRate) {
                 highestSuccessRate = currentSuccessRate;
-                bestMise = initialMise;
+                bestMise = mise;
             }
         }
         return bestMise;
     }
 
-    public static double moyenneMeilleureMise(double winrate, int iterations) {
+    public static double moyenneMeilleureMise(double winrate, int iterations, double initialMise) {
         double totalBestMise = 0;
         
         for (int i = 0; i < iterations; i++) {
-            double bestMiseForRun = N2(winrate);
+            double bestMiseForRun = N2(winrate, initialMise);
             totalBestMise += bestMiseForRun;
         }
         
-        double averageBestMise = totalBestMise / iterations;
-        return averageBestMise;
+        return totalBestMise / iterations;
     }
 }
