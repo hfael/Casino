@@ -1,19 +1,20 @@
 package fr.fael.casino.advanced;
 
 import fr.fael.casino.nodes.Nodes1;
-import fr.fael.casino.nodes.Nodes2;
 
 public class Main {
-    
-    public static double wallet = 128;
-    public static double mise = 0.1;
-    public static double benefice = 1000; // en %
-    
+
+    public static double wallet = 1000;
+    public static double mise = 1; // Mise initiale faible
+    public static double benefice = 50; // en %
+
     public static double final_benefice = ((wallet * benefice) / 100) + wallet;
-    
+    public static double mise_max = 75000;
+
     public static void main(String[] args) throws InterruptedException {
-        double winrate = Nodes1.N1();
-        double totalMise = 0;
+    	Functions.log("Resultat: " + Nodes1.N1());
+        /*double winrate = Nodes1.N1();
+        double totalBestMise = 0;
         int iterations = 0;
         double previousAverage = 0;
         int stableIterations = 0;
@@ -22,10 +23,11 @@ public class Main {
 
         while (stableIterations < stabilityThreshold) {
             iterations++;
-            totalMise += Nodes2.N2(winrate, mise);
-            
-            double currentAverage = totalMise / iterations;
-            
+            double bestMise = Nodes2.N2(winrate, mise);
+            totalBestMise += bestMise;
+
+            double currentAverage = totalBestMise / iterations;
+
             if (Math.abs(currentAverage - previousAverage) < (previousAverage * precisionThreshold)) {
                 stableIterations++;
             } else {
@@ -33,14 +35,11 @@ public class Main {
             }
 
             previousAverage = currentAverage;
-
-            if (iterations % 100 == 0) {
-                Functions.log("Tour: " + iterations + ", Mise moyenne actuelle: " + currentAverage + "€");
-            }
+            Functions.log("Tour: " + iterations + ", Mise moyenne actuelle: " + currentAverage + "€");
         }
-        
-        double finalAverageMise = totalMise / iterations;
+
+        double finalAverageMise = totalBestMise / iterations;
         Functions.log("Mise optimale moyenne pour le bénéfice choisi après " + iterations + " itérations: " + finalAverageMise + "€");
-        Functions.log("Avec un winrate potentiel à " + winrate + "%");
+        Functions.log("Avec un winrate potentiel à " + winrate + "%");*/
     }
 }
