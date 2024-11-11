@@ -1,44 +1,35 @@
 package fr.fael.casino.advanced;
 
-import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
 public class Functions {
 
-	static Set<Integer> rougeValue = new HashSet<>(Set.of(1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36));
-	
-	public static int getRandomInt(int maxInt) {
-		Random random = new Random();
-		int number = random.nextInt(maxInt);
-		return number;
-	}
-	
-	public static String getColor(int number) {
-		if(number == 0) return "Vert";
-		if(rougeValue.contains(number)) return "Rouge";
-		return "Noir";
-	}
-	
-	public static int roulette() {
-		int a = getRandomInt(36);
-		if(getColor(a).equalsIgnoreCase("Noir")) return 1;
-		return 0;
-	}
-	
-	public static double getTime(int games) {
-		int time = (games * 140) / 3600;
-		return time;
-	}
-	
-	public static void log(String string) {
-		System.out.println(string);
-	}
-	
-	public static String roulette2() {
-		int a = getRandomInt(36);
-		String b = getColor(a);
-		String c = a + " " + b;
-		return c;
-	}
+    private static final Set<Integer> rougeValue = Set.of(1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36);
+    private static final Random random = new Random();
+
+    public static int getRandomInt(int maxInt) {
+        return random.nextInt(maxInt);
+    }
+    
+    public static String getColor(int number) {
+        return number == 0 ? "Vert" : (rougeValue.contains(number) ? "Rouge" : "Noir");
+    }
+
+    public static int roulette() {
+        return getColor(getRandomInt(37)).equals("Noir") ? 1 : 0;
+    }
+
+    public static double getTime(int games) {
+        return (games * 140) / 3600.0;
+    }
+
+    public static void log(String message) {
+        System.out.println(message);
+    }
+
+    public static String roulette2() {
+        int number = getRandomInt(37);
+        return number + " " + getColor(number);
+    }
 }
